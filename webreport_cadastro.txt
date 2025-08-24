@@ -1,0 +1,99 @@
+Folha_Pagamento ADP
+
+ Nome
+
+  z_Cadastro_Geral_ALL
+Tornar PRIVADO
+
+
+  Ler Empregado
+  Ler Estabelecimento de Empregado
+  Ler Histórico_Rescisão de Empregado
+    Onde Histórico_Rescisão.Data_Afastamento >= [Data_Dem,12/31/2099]
+  Ler Motivo_Rescisão de Histórico_Rescisão
+
+
+  Estabelecimento.CNPJ
+  Empregado.Empresa - Código
+  Estabelecimento.Código
+  Empregado.ID SONOVA
+  Empregado.Matrícula
+  Empregado.CPF
+  Empregado.Nome
+  Empregado.Sexo
+  Empregado.Data da Admissão
+  Empregado.Data Afastamento Cessão
+  Empregado.Data de Desligamento
+  Empregado.Situação do Empregado
+  Empregado.Situação do Empregado - Status
+  Empregado.Situação sem Data
+  Empregado.Sigla do Afastamento
+  Empregado.Função - Código
+  Empregado.Função - Nome
+  Empregado.Centro de Resultado - Código
+  Empregado.Centro de Resultado - Nome
+  Empregado.Centro de Custo Suiça
+  Empregado.Centro de custo Suíça/Novo
+  Empregado.E-Mail
+  Empregado.Salário
+  Empregado.Salário - Tipo
+  Empregado.Salario Anterior
+  Empregado.Salário por Hora
+  Empregado.Razao Social Empresa Origem
+  Empregado.Razao Social Empresa Destino
+  Empregado.Modo Ponto
+  Empregado.CTPS Nro
+  Empregado.CTPS Série
+  Empregado.CTPS UF
+  Empregado.CTPS Nro/Série/UF
+  Empregado.Data Fim Experiência
+  Empregado.Data Fim Experiência/Renovação
+  Empregado.Data de Nascimento
+  Empregado.Idade
+  Empregado.Nome da Mãe
+  Empregado.Nome do Pai
+  Empregado.Período de Experiência
+  Empregado.Periodo de Renovação
+  Empregado.PIS
+  Empregado.Prazo de Contrato
+  Empregado.Nro de Horas
+  Empregado.Chefia Imediata - Cód Estab
+  Empregado.Chefia Imediata - Matrícula
+  Empregado.Chefia Imediata - Nome
+  Empregado.Associado ao Sindicato
+  Empregado.Registros Manuais Mecânicos
+  Empregado.Recebe Adiantamento Quinzenal
+  Empregado.Sindicato - Código
+  Empregado.Sindicato - Razão Social
+  Empregado.Categoria Profissional - Cód
+  Empregado.Categoria Profissional - Nome
+  Empregado.Vínculo Empregatício - Código
+  Empregado.Vínculo Empregatício - Nome
+  Empregado.Desconta Contribuição Sindical
+  Empregado.Já descontou no ano
+  Empregado.Recebe Dem Pag via Correio
+  Empregado.Grau de Instrução - Nome
+  Motivo_Rescisão.Nome
+  Motivo_Rescisão.Aviso Prévio
+  Motivo_Rescisão.Sigla
+  Motivo_Rescisão.Código
+  Histórico_Rescisão.Nro Dias Aviso
+  Histórico_Rescisão.Motivo Deslig Menor Aprendiz
+  Histórico_Rescisão.Iniciativa
+  Histórico_Rescisão.Data Fim Aviso Previo Ind
+  Histórico_Rescisão.Data Homologação
+  Histórico_Rescisão.Data Afastamento
+  Histórico_Rescisão.Data do Aviso
+  Histórico_Rescisão.Aviso Prévio
+  Empregado.Turma - Código
+  Empregado.Turma - Descrição
+  Empregado.Escala - Código
+  Empregado.Escala - Nome
+  Empregado.Rescisão Encerrada
+  Motivo_Rescisão.Iniciativa
+  Empregado.Aposentado
+  Empregado.Ultimo Afastamento - Data Afas
+  Empregado.Ultimo Afastamento - Data Ret
+  Empregado.Ultimo Afastamento - Motivo
+  Empregado.Tempo de Serviço
+  Empregado.Ponto por Exceção
