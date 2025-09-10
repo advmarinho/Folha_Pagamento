@@ -1,0 +1,75 @@
+Option Explicit
+
+Sub ImportarVariosXML_Generico()
+    Dim xmlDoc As Object
+    Dim xmlNode As Object
+    Dim filePath As Variant
+    Dim ws As Worksheet
+    Dim headers As Collection
+    Dim i As Long, col As Long, ultimaLinha As Long
+    
+    ' Selecionar múltiplos arquivos
+    filePath = Application.GetOpenFilename("Arquivos XML (*.xml), *.xml", , _
+                                           "Selecione os XMLs", , True)
+    If VarType(filePath) = vbBoolean Then Exit Sub
+    
+    ' Criar planilha (se não existir)
+    On Error Resume Next
+    Set ws = ThisWorkbook.Sheets("XML_Dados")
+    If ws Is Nothing Then
+        Set ws = ThisWorkbook.Sheets.Add
+        ws.Name = "XML_Dados"
+    End If
+    On Error GoTo 0
+    
+    ' Definir cabeçalhos apenas na primeira execução
+    If ws.Cells(1, 1).Value = "" Then
+        Set headers = New Collection
+        ' Captura os nomes de tags do primeiro XML
+        Set xmlDoc = CreateObject("MSXML2.DOMDocument")
+        xmlDoc.async = False
+        xmlDoc.Load (filePath(1))
+        
+        For Each xmlNode In xmlDoc.getElementsByTagName("*")
+            If Trim(xmlNode.Text) <> "" And xmlNode.ChildNodes.Length = 1 Then
+                On Error Resume Next
+                headers.Add xmlNode.nodeName, xmlNode.nodeName
+                On Error GoTo 0
+            End If
+        Next xmlNode
+        
+        ' Escrever cabeçalho
+        col = 1
+        For i = 1 To headers.Count
+            ws.Cells(1, col).Value = headers(i)
+            col = col + 1
+        Next i
+    End If
+    
+    ' Agora processar cada arquivo
+    For i = LBound(filePath) To UBound(filePath)
+        Set xmlDoc = CreateObject("MSXML2.DOMDocument")
+        xmlDoc.async = False
+        xmlDoc.Load (filePath(i))
+        
+        If xmlDoc.ParseError.ErrorCode = 0 Then
+            ' Descobrir última linha preenchida
+            ultimaLinha = ws.Cells(ws.Rows.Count, 1).End(xlUp).Row + 1
+            
+            ' Preencher linha
+            col = 1
+            For Each xmlNode In ws.Range("A1", ws.Cells(1, ws.Columns.Count).End(xlToLeft))
+                On Error Resume Next
+                ws.Cells(ultimaLinha, col).Value = xmlDoc.SelectSingleNode("//" & xmlNode.Value).Text
+                On Error GoTo 0
+                col = col + 1
+            Next xmlNode
+        End If
+    Next i
+    
+    ' Ajustar largura das colunas
+    ws.Cells.EntireColumn.AutoFit
+    ws.Columns("A").ColumnWidth = 10  ' Coluna A fixa em 10
+    
+    MsgBox "Todos os XMLs foram importados e adicionados à planilha!", vbInformation
+End Sub
